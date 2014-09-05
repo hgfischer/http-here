@@ -15,8 +15,7 @@ type config struct {
 var fs = &flag.FlagSet{}
 
 func printErrorUsageAndExit(err string, code int) {
-	fmt.Fprintf(os.Stderr, "ERROR: %s\n\n", err)
-	printUsage()
+	fmt.Fprintf(os.Stderr, "\nWARN: %s\n\n", err)
 	os.Exit(code)
 }
 

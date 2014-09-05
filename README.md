@@ -4,7 +4,7 @@
 
 ## Installing
 
-Install the `go` compiler from your preferred source. I recommend the official packages from [http://golang.org]
+Install the `go` compiler from your preferred source. I recommend the official packages from http://golang.org.
 
 Once you have `go` installed, setup the environment variable `$GOPATH` to somewhere inside your `$HOME`. For example:
 

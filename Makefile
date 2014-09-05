@@ -50,6 +50,11 @@ $(BIN): $(SOURCES)
 	@go build -ldflags "-X main.Build $(BUILD) -X main.Version $(VERSION)" -o $(BIN) 
 
 
+.PHONY: run
+run: $(BIN) 
+	@./$(BIN)
+
+
 .PHONY: clean
 clean: check_gopath
 	@$(ECHO) "Removing temp files..."

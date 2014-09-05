@@ -6,7 +6,7 @@ import (
 	"os"
 )
 
-type Config struct {
+type config struct {
 	Address   string
 	CORS      bool
 	CacheTime int
@@ -28,8 +28,8 @@ func printUsage() {
 
 // Parse command line and load config file. The order of precedence, from more important to less important, is:
 // cmd line flag > environment variable > config file
-func loadConfig() *Config {
-	cfg := &Config{}
+func loadConfig() *config {
+	cfg := &config{}
 
 	fs.StringVar(&cfg.Address, "a", ":8080", "Address to start listening for HTTP connections")
 	fs.IntVar(&cfg.CacheTime, "c", -1, "Set cache time, in seconds, for cache-control max-age header")

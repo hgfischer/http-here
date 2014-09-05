@@ -12,11 +12,11 @@ func main() {
 	fmt.Println("Hit CTRL-C to stop this server")
 
 	fsH := http.FileServer(http.Dir(""))
-	handler := CacheHandler(fsH, cfg.CacheTime)
+	handler := newCacheHandler(fsH, cfg.CacheTime)
 	if cfg.CORS {
-		handler = CORSHandler(handler)
+		handler = newCORSHandler(handler)
 	}
-	handler = LogHandler(handler)
+	handler = newLogHandler(handler)
 	err := http.ListenAndServe(cfg.Address, handler)
 	log.Fatal(err)
 }

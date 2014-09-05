@@ -6,7 +6,7 @@ type corsHandler struct {
 	handler http.Handler
 }
 
-func CORSHandler(h http.Handler) http.Handler {
+func newCORSHandler(h http.Handler) http.Handler {
 	return &corsHandler{h}
 }
 

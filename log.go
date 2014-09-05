@@ -9,7 +9,7 @@ type logHandler struct {
 	handler http.Handler
 }
 
-func LogHandler(h http.Handler) http.Handler {
+func newLogHandler(h http.Handler) http.Handler {
 	return &logHandler{h}
 }
 

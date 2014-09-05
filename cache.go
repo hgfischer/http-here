@@ -10,7 +10,7 @@ type cacheHandler struct {
 	cacheTime int
 }
 
-func CacheHandler(h http.Handler, cacheTime int) http.Handler {
+func newCacheHandler(h http.Handler, cacheTime int) http.Handler {
 	return &cacheHandler{h, cacheTime}
 }
 

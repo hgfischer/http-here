@@ -1,6 +1,4 @@
 BIN        := http-here
-BUILD      := $(shell git rev-parse --short HEAD)
-VERSION    := $(shell git describe --tags $(shell git rev-list --tags --max-count=1))
 MAKEFILE   := $(word $(words $(MAKEFILE_LIST)), $(MAKEFILE_LIST))
 BASE_DIR   := $(shell cd $(dir $(MAKEFILE)); pwd)
 SOURCES    := $(shell find . -type f -name '*.go')
@@ -8,10 +6,8 @@ PKGS       := $(shell go list ./...)
 COVER_OUT  := coverage.out
 COVER_HTML := coverage.html
 TMP_COVER  := tmp_cover.out
-ECHO       := /bin/echo
 LINT       := $(GOBIN)/golint
 GOTOOLDIR  := $(shell go env GOTOOLDIR)
-VET        := $(GOTOOLDIR)/vet
 COVER      := $(GOTOOLDIR)/cover
 
 
@@ -46,8 +42,7 @@ endif
 
 
 $(BIN): $(SOURCES) 
-	@$(ECHO) "Building $(BIN) $(VERSION) $(BUILD)..."
-	@go build -ldflags "-X main.Build $(BUILD) -X main.Version $(VERSION)" -o $(BIN) 
+	@go build -v -o $(BIN) 
 
 
 .PHONY: run
@@ -57,8 +52,7 @@ run: $(BIN)
 
 .PHONY: clean
 clean: check_gopath
-	@$(ECHO) "Removing temp files..."
-	@rm -fv $(BIN) *.cover *.out 
+	@rm -fv *.cover *.out 
 	@find . -name '.*.swp' -exec rm -fv {} \;
 	@go clean -v
 
@@ -91,9 +85,6 @@ $(LINT): check_gopath check_gobin
 lint: $(LINT)
 	@for src in $(SOURCES); do golint $$src || exit 1; done
 
-
-$(VET): check_gopath check_gobin
-	@go get code.google.com/p/go.tools/cmd/vet || exit 0
 
 .PHONY: vet
 vet: check_gopath $(VET)

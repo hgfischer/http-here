@@ -1,3 +1,5 @@
+[![Build Status](https://drone.io/github.com/hgfischer/http-here/status.png)](https://drone.io/github.com/hgfischer/http-here/latest)
+
 # http-here
 
 `http-here` is a simple http server for testing, local development, and learning.

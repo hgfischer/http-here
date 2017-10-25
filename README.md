@@ -11,7 +11,7 @@ Install the `go` compiler from your preferred source. I recommend the official p
 Once you have `go` installed, setup the environment variable `$GOPATH` to somewhere inside your `$HOME`. For example:
 
 ```
-export $GOPATH="/home/user/go"
+export GOPATH="/home/user/go"
 mkdir -p $GOPATH
 ```
 
